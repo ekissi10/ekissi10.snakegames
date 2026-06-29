@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu du Snake Rétro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="game-container">
+        <h1>Retro Snake Game</h1>
+        <!-- Remplacez l'ancienne div "score-box" par celle-ci -->
+    <div class="score-box">
+    Score : <span id="score">0</span> | Meilleur : <span id="high-score">0</span>
+   </div>
+     </div>
+	 <!-- Ajoutez cette ligne ici -->
+     <button id="pause-btn">Pause</button>
+	 
+        <!-- Le Canvas est la zone de dessin où le JavaScript va animer le jeu -->
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+        
+        <div id="game-over-screen" class="hidden">
+            <h2>Game Over !</h2>
+            <button id="restart-btn">Rejouer</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
