@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Courier New', Courier, monospace; /* Style rétro */
+    font-family: 'Courier New', Courier, monospace;
 }
 
 body {
@@ -12,6 +12,9 @@ body {
     justify-content: center;
     align-items: center;
     color: #fff;
+    padding: 10px;
+    /* Empêche le défilement de la page sur mobile quand on joue */
+    overflow: hidden; 
 }
 
 .game-container {
@@ -21,18 +24,31 @@ body {
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     position: relative;
+    width: 100%;
+    max-width: 440px; /* Taille max sur ordinateur */
 }
 
 h1 {
-    font-size: 28px;
-    margin-bottom: 10px;
+    font-size: 24px;
+    margin-bottom: 8px;
     color: #2ecc71;
 }
 
 .score-box {
-    font-size: 20px;
-    margin-bottom: 15px;
+    font-size: 16px;
+    margin-bottom: 10px;
     font-weight: bold;
+}
+
+#pause-btn {
+    background: #34495e;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
 }
 
 canvas {
@@ -40,24 +56,29 @@ canvas {
     border: 4px solid #34495e;
     border-radius: 4px;
     display: block;
+    margin: 0 auto;
+    /* Rend le Canvas fluide sur petit écran */
+    max-width: 100%;
+    height: auto;
 }
 
 #game-over-screen {
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.85);
-    width: 80%;
-    padding: 30px;
+    background: rgba(0, 0, 0, 0.9);
+    width: 85%;
+    padding: 25px;
     border-radius: 8px;
     border: 2px solid #e74c3c;
+    z-index: 10;
 }
 
 #game-over-screen h2 {
     color: #e74c3c;
-    font-size: 32px;
-    margin-bottom: 20px;
+    font-size: 28px;
+    margin-bottom: 15px;
 }
 
 #restart-btn {
@@ -65,17 +86,66 @@ canvas {
     color: black;
     border: none;
     padding: 10px 20px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     cursor: pointer;
     border-radius: 4px;
-    transition: background 0.2s;
-}
-
-#restart-btn:hover {
-    background-color: #27ae60;
 }
 
 .hidden {
     display: none !important;
+}
+
+/* --- MANETTE TACTILE (Cachée sur ordinateur) --- */
+.touch-controls {
+    display: none; 
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+    gap: 5px;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 5px;
+}
+
+.ctrl-btn {
+    width: 60px;
+    height: 50px;
+    background-color: #34495e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+    /* Évite le zoom natif du mobile lors de clics répétés */
+    touch-action: manipulation; 
+}
+
+.ctrl-btn:active {
+    background-color: #2ecc71;
+    color: black;
+}
+
+.spacer {
+    width: 60px;
+}
+
+/* =========================================================================
+   MEDIA QUERY : Ajustements spécifiques pour les écrans mobiles (< 600px)
+   ========================================================================= */
+@media (max-width: 600px) {
+    .game-container {
+        padding: 12px;
+    }
+    h1 {
+        font-size: 20px;
+    }
+    /* On affiche la manette tactile sur mobile */
+    .touch-controls {
+        display: flex;
+    }
 }

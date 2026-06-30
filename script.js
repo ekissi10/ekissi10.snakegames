@@ -11,6 +11,10 @@ const pauseBtn = document.getElementById("pause-btn"); // Le bouton pause ajout�
 
 const gridSize = 20; 
 const tileCount = canvas.width / gridSize; 
+const btnUp = document.getElementById("btn-up");
+const btnDown = document.getElementById("btn-down");
+const btnLeft = document.getElementById("btn-left");
+const btnRight = document.getElementById("btn-right");
 
 // Variables globales pour piloter le jeu
 let snakeObj;
@@ -22,6 +26,16 @@ let highScore = 0;
 let gameInterval;
 let gameSpeed = 120;
 let isPaused = false; // Permet de savoir si le jeu est arrêté temporairement
+// Écouteurs pour les contrôles tactiles sur mobile
+btnUp.addEventListener("click", () => triggerDirection("ArrowUp"));
+btnDown.addEventListener("click", () => triggerDirection("ArrowDown"));
+btnLeft.addEventListener("click", () => triggerDirection("ArrowLeft"));
+btnRight.addEventListener("click", () => triggerDirection("ArrowRight"));
+
+// Fonction intermédiaire pour simuler les touches avec les boutons mobiles
+function triggerDirection(fakeKey) {
+    changeDirection({ key: fakeKey });
+}
 
 // =========================================================================
 // 2. DÉFINITION DES CLASSES (PROGRAMMATION ORIENTÉE OBJET)
